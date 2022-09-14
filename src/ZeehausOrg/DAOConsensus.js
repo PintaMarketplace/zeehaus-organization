@@ -4,15 +4,25 @@ import { showLocal } from "./ThirdSection";
 
 export default class DAOConsensus extends Component {
   state = {};
-  render() {
+  componentDidMount () {
+    window.onmessage = (e) => {
+      let { type, data } = typeof e.data === 'object' ? e.data : JSON.parse(e.data.split('!').join('').split('_').join(''))
+      if (type && data) {
+        this.setState({
+          height: data.heightOfPage
+        })
+      }
+    }
+  }
+  render () {
+    console.log(this.ff)
     return (
       <div>
         <iframe
-          //   ref={(n) => setIframeTwo(n)}
           title="Use ZEH to Purchase Properties"
           frameBorder="0"
-          height="2000"
           width="100%"
+          height={this.state.height}
           scrolling="no"
           src={
             showLocal

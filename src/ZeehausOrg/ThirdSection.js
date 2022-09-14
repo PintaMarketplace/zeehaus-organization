@@ -20,11 +20,12 @@ const flex = {
   justifyContent: 'center',
   alignItems: 'center'
 }
-export default function ThirdSection() {
+export default function ThirdSection () {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [iframeOne, setIframeOne] = useState();
   const [iframeTwo, setIframeTwo] = useState();
+  const [height, setHeight] = useState()
   const messaging = {};
 
   useEffect(() => {
@@ -39,7 +40,13 @@ export default function ThirdSection() {
     if (data && ["two", "one", "three", "four"].includes(data)) {
       console.log("message", data);
       setPopupOpen(data);
+    } else {
+      let obj = typeof e.data === 'object' ? e.data : JSON.parse(e.data.split('!').join('').split('_').join(''))
+      if (obj.type && obj.data) {
+        setHeight(obj.data.heightOfPage)
+      }
     }
+
   };
 
   return (
@@ -433,7 +440,7 @@ export default function ThirdSection() {
                           owner-occupied fractional property ownership, the
                           income you receive may have tax impacts on your
                           financial situation. Please consult with a tax advisor
-                          before investing. 
+                          before investing.
                         </List>
                         <List>
                           Purchasing Zeehaus coins does not entitle the owner of
@@ -490,7 +497,7 @@ export default function ThirdSection() {
                 ref={(n) => setIframeOne(n)}
                 title="Understand Zeehaus Coins"
                 frameBorder="0"
-                height="1900"
+                height={height}
                 width="100%"
                 {...messaging}
                 onLoad={() => setIframeLoaded(true)}
@@ -513,7 +520,7 @@ export default function ThirdSection() {
                 ref={(n) => setIframeTwo(n)}
                 title="Use ZEH to Purchase Properties"
                 frameBorder="0"
-                height="1500"
+                height={height}
                 onLoad={() => setIframeLoaded(true)}
                 {...messaging}
                 width="100%"
@@ -632,7 +639,7 @@ export default function ThirdSection() {
               title="Understand Zeehaus Coins"
               onLoad={() => setIframeLoaded(true)}
               frameBorder="0"
-              height="1900"
+              height={height}
               width="100%"
               scrolling="no"
               src={
@@ -650,7 +657,7 @@ export default function ThirdSection() {
               title="Understand Zeehaus Coins"
               onLoad={() => setIframeLoaded(true)}
               frameBorder="0"
-              height="1900"
+              height={height}
               width="100%"
               scrolling="no"
               src={
@@ -668,7 +675,7 @@ export default function ThirdSection() {
               title="Understand Zeehaus Coins"
               onLoad={() => setIframeLoaded(true)}
               frameBorder="0"
-              height="1900"
+              height={height}
               width="100%"
               scrolling="no"
               src={
@@ -686,7 +693,7 @@ export default function ThirdSection() {
               title="Understand Zeehaus Coins"
               onLoad={() => setIframeLoaded(true)}
               frameBorder="0"
-              height="1900"
+              height={height}
               width="100%"
               scrolling="no"
               src={

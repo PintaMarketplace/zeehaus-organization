@@ -4,7 +4,17 @@ import { showLocal } from "./ThirdSection";
 
 export default class Refund extends Component {
   state = {};
-  render() {
+  componentDidMount () {
+    window.onmessage = (e) => {
+      let { type, data } = typeof e.data === 'object' ? e.data : JSON.parse(e.data.split('!').join('').split('_').join(''))
+      if (type && data) {
+        this.setState({
+          height: data.heightOfPage
+        })
+      }
+    }
+  }
+  render () {
     return (
       <div>
         <Grid>
@@ -12,7 +22,7 @@ export default class Refund extends Component {
             //   ref={(n) => setIframeTwo(n)}
             title="Refund"
             frameBorder="0"
-            height="1000"
+            height={this.state.height}
             width="100%"
             scrolling="no"
             src={
