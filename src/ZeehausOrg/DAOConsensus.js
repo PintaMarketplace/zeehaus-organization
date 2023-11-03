@@ -4,18 +4,22 @@ import { showLocal } from "./ThirdSection";
 
 export default class DAOConsensus extends Component {
   state = {};
-  componentDidMount () {
+  componentDidMount() {
     window.onmessage = (e) => {
-      let { type, data } = typeof e.data === 'object' ? e.data : JSON.parse(e.data.split('!').join('').split('_').join(''))
+      alert("e", JSON.stringify(e));
+      let { type, data } =
+        typeof e.data === "object"
+          ? e.data
+          : JSON.parse(e.data.split("!").join("").split("_").join(""));
       if (type && data) {
         this.setState({
-          height: data.heightOfPage
-        })
+          height: data.heightOfPage,
+        });
       }
-    }
+    };
   }
-  render () {
-    console.log(this.ff)
+  render() {
+    console.log(this.ff);
     return (
       <div>
         <iframe

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import MobileDetect from "mobile-detect";
+import React, { Component } from "react";
 const md = new MobileDetect(window.navigator.userAgent);
 const isMobile = md.mobile();
 class Tabs extends Component {
@@ -11,7 +11,7 @@ class Tabs extends Component {
   }
 
   activateTab(e, index, onActive) {
-    if(this.props.onIndexChange) this.props.onIndexChange(index)
+    if (this.props.onIndexChange) this.props.onIndexChange(index);
     this.setState({ activeTab: index }, () => {
       if (onActive) onActive(e);
     });
@@ -137,9 +137,7 @@ class Tabs extends Component {
             className={
               activeTab === i ? "zeetabs-content active" : "zeetabs-content"
             }
-          >
-            
-          </div>
+          ></div>
         )
       );
     }

@@ -6,28 +6,32 @@ import MobileDetect from "mobile-detect";
 import ExtraContent from "./ExtraContent";
 import List from "./List";
 import PopupPage from "./PopupPage";
-import { CRYPTO_TRANSFER_MAX_LIMIT, EXTERNAL_EXCHANGE_LISTS, HAUS_TO_NFT_RATE_DESC } from "../Vars";
+import {
+  CRYPTO_TRANSFER_MAX_LIMIT,
+  EXTERNAL_EXCHANGE_LISTS,
+  HAUS_TO_NFT_RATE_DESC,
+} from "../Vars";
 import commaNumber from "comma-number";
 import SectionLogo from "./SectionLogo";
-export const showLocal = false
+export const showLocal = true;
 const md = new MobileDetect(window.navigator.userAgent);
 const isMobile = md.mobile();
-export const coinLaunchDate = new Date("April 1, 2022").getTime();
+export const coinLaunchDate = new Date("September 1, 2023").getTime();
 export const currentDate = new Date().getTime();
-export const equityDate = new Date("January 1, 2022").getTime();
+export const equityDate = new Date("December 22, 2022").getTime();
 const flex = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}
-export default function ThirdSection () {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+export default function ThirdSection() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [iframeOne, setIframeOne] = useState();
   const [iframeTwo, setIframeTwo] = useState();
-  const [height, setHeight] = useState()
+  const [height, setHeight] = useState();
   const messaging = {};
-
+  const localHost = "https://pinta.co" || "http://localhost:3000";
   useEffect(() => {
     window.onmessage = handleIframeMessage;
     iframeOne?.contentWindow.postMessage("hello", "*");
@@ -35,18 +39,20 @@ export default function ThirdSection () {
   }, [iframeOne, iframeTwo, iframeLoaded]);
 
   const handleIframeMessage = (e) => {
-    // console.log("EEEE", e.data);
+    console.log("EEEE", e.data);
     let { data } = e;
     if (data && ["two", "one", "three", "four"].includes(data)) {
       console.log("message", data);
       setPopupOpen(data);
     } else {
-      let obj = typeof e.data === 'object' ? e.data : JSON.parse(e.data.split('!').join('').split('_').join(''))
+      let obj =
+        typeof e.data === "object"
+          ? e.data
+          : JSON.parse(e.data.split("!").join("").split("_").join(""));
       if (obj.type && obj.data) {
-        setHeight(obj.data.heightOfPage)
+        setHeight(obj.data.heightOfPage);
       }
     }
-
   };
 
   return (
@@ -504,7 +510,7 @@ export default function ThirdSection () {
                 scrolling="no"
                 src={
                   showLocal
-                    ? "http://localhost:3000/coin/zeehausorg"
+                    ? `${localHost}/coin/zeehausorg`
                     : "https://zeehaus.com/coin/zeehausorg"
                 }
               />
@@ -527,7 +533,7 @@ export default function ThirdSection () {
                 scrolling="no"
                 src={
                   showLocal
-                    ? "http://localhost:3000/org/coin_property_purchase"
+                    ? `${localHost}/org/coin_property_purchase`
                     : "https://zeehaus.com/org/coin_property_purchase"
                 }
               />
@@ -644,7 +650,7 @@ export default function ThirdSection () {
               scrolling="no"
               src={
                 showLocal
-                  ? "http://localhost:3000/coin/dialog_one"
+                  ? `${localHost}/coin/dialog_one`
                   : "https://zeehaus.com/coin/dialog_one"
               }
             />
@@ -662,7 +668,7 @@ export default function ThirdSection () {
               scrolling="no"
               src={
                 showLocal
-                  ? "http://localhost:3000/coin/dialog_two"
+                  ? `${localHost}/coin/dialog_two`
                   : "https://zeehaus.com/coin/dialog_two"
               }
             />
@@ -680,7 +686,7 @@ export default function ThirdSection () {
               scrolling="no"
               src={
                 showLocal
-                  ? "http://localhost:3000/coin/dialog_three"
+                  ? `${localHost}/coin/dialog_three`
                   : "https://zeehaus.com/coin/dialog_three"
               }
             />
@@ -698,7 +704,7 @@ export default function ThirdSection () {
               scrolling="no"
               src={
                 showLocal
-                  ? "http://localhost:3000/coin/dialog_four"
+                  ? `${localHost}/coin/dialog_four`
                   : "https://zeehaus.com/coin/dialog_four"
               }
             />

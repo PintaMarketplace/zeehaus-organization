@@ -1,7 +1,7 @@
-import React, { Component, useState } from "react";
-import "./style.css";
-import logo from "./../Icon.png";
 import MobileDetect from "mobile-detect";
+import React, { useState } from "react";
+import logo from "./../Icon.png";
+import "./style.css";
 const md = new MobileDetect(window.navigator.userAgent);
 const isMobile = md.mobile();
 export default function Nav() {

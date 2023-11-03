@@ -4,7 +4,7 @@ import MobileDetect from "mobile-detect";
 import Colors from "./Colors";
 import ReactSimpleExpander from "./ReactSimpleExpander";
 import LogoWhite from "./../Icon.png";
-import './style.css'
+import "./style.css";
 
 const md = new MobileDetect(window.navigator.userAgent);
 const isMobile = md.mobile();
@@ -47,7 +47,7 @@ const styles = {
   footerHeads: {
     fontSize: "22px",
     color: Colors.blue,
-    textAlign: isMobile ? 'center' : "left",
+    textAlign: isMobile ? "center" : "left",
   },
   footerSubHeads: {
     color: "#284e75",
@@ -62,7 +62,7 @@ const styles = {
 };
 const redirectTo = (path, props) => {
   window.location.href = path;
-//   window.scrollTo(0, 0);
+  //   window.scrollTo(0, 0);
 };
 
 export default class Footer extends React.Component {
@@ -294,7 +294,7 @@ export default class Footer extends React.Component {
                                   )
                                 }
                               >
-                                Contact Us
+                                FAQ
                               </a>
                             </li>
                           </ul>

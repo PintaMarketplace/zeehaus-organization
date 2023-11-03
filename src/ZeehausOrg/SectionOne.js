@@ -1,7 +1,7 @@
-import React from 'react'
-import { Col, Grid, Row } from 'react-flexbox-grid'
+import React from "react";
+import { Col, Grid, Row } from "react-flexbox-grid";
 
-export default function SectionOne () {
+export default function SectionOne() {
   return (
     <div>
       <Grid>
